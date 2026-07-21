@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collector's Night: Limited Figure Drop</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg: #0b1d2b;
+      --card: #0f2a3a;
+      --text: #e6f0f8;
+      --muted: #a9b7c6;
+      --gold: #d4af37;
+      --silver: #cbd5e1;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #f6f7fb; color: #111; font-family: 'Raleway', system-ui, Arial, sans-serif; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,0.92); border-bottom: 1px solid #e5e7eb; }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding:14px 20px; max-width:1100px; margin:0 auto; }
+    .logo { font-weight:700; font-size:18px; color:#1f2937; }
+    nav a { color:#374151; text-decoration:none; font-size:14px; margin: 0 8px; }
+    .hero { text-align:center; padding:48px 20px 20px; background: #fff; }
+    .title { font-size: 38px; font-weight: 900; letter-spacing:.5px; color:#1f2937; margin: 6px 0; }
+    .subtitle { color:#6b7280; font-size:16px; margin-bottom:16px; }
+    .cta { display:inline-block; padding:12px 20px; border-radius:999px; border:1px solid #374151; text-decoration:none; color:#fff; background: linear-gradient(135deg, #1e2a4a 0%, #0b1d2b 100%); cursor:pointer; }
+    .countdown { font-family: monospace; font-size:20px; color: var(--gold); margin-top:8px; }
+    .section { padding:28px 20px; }
+    .section h2 { font-size:22px; margin:0 0 12px; text-align:center; }
+    .gallery { display:grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap:14px; padding:0 6px; }
+    .card { background:#fff; border-radius:12px; overflow:hidden; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    .card img { width:100%; height:180px; object-fit:cover; display:block; }
+    .card .caption { padding:8px 10px; font-size:12px; color:#374151; text-align:left; }
+    .grid { display:grid; gap:16px; grid-template-columns: 1fr 1fr; }
+    .panel { background:#fff; padding:16px; border-radius:12px; border:1px solid #e5e7eb; }
+    label { display:block; font-size:12px; color:#374151; margin:6px 0 6px; }
+    input, select { width:100%; padding:10px; border-radius:8px; border:1px solid #d1d5db; background:#f9fafb; }
+    button { background: #1f4ed8; color:white; border:0; padding:12px 14px; border-radius:8px; cursor:pointer; }
+    .btn-secondary { background: transparent; color:#1f4ed8; border:1px solid #1f4ed8; }
+    .muted { color:var(--muted); font-size:12px; }
+    .modal { display:none; position:fixed; inset:0; align-items:center; justify-content:center; background: rgba(0,0,0,.4); }
+    .modal.open { display:flex; }
+    .modal .dialog { width:90%; max-width:420px; background:#fff; padding:16px; border-radius:12px; }
+    .footer { text-align:center; padding:20px; color:#6b7280; }
+    @media (max-width: 900px){
+      .grid { grid-template-columns: 1fr; }
+    }
+    .fade-up { animation: fadeUp 0.5s ease forwards; opacity:0; }
+    @keyframes fadeUp { to { opacity:1; transform: translateY(0); } from { opacity:0; transform: translateY(20px); } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav" role="navigation" aria-label="주 메뉴">
+      <div class="logo">Collector's Night</div>
+      <nav>
+        <a href="#gallery">갤러리</a>
+        <a href="#schedule">드롭 일정</a>
+        <a href="#apply">참여/추첨</a>
+        <a href="#delivery">수령/배송</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="히어로">
+    <div class="title">수집가의 밤, 한정 피규어 드롭</div>
+    <div class="subtitle">단 한 번의 기회. 아래 이미지를 참고해 주세요.</div>
+    <a class="cta" href="#apply" id="cta-join">참여하기</a>
+    <div class="countdown" id="countdown" aria-live="polite">다음 드롭까지 남은 시간: 로딩 중</div>
+  </section>
+
+  <section id="gallery" class="section" aria-label="피규어 갤러리">
+    <h2>피규어 갤러리</h2>
+    <div class="gallery fade-up" id="galleryGrid" style="animation-delay:.0s">
+      <div class="card">
+        <img class="fig-img" data-src="https://github.com/typoon725/img/blob/main/%EB%8D%B0%EC%BF%A0.jpg?raw=true" src="https://github.com/typoon725/img/blob/main/%EB%8D%B0%EC%BF%A0.jpg?raw=true" alt="Akatsuki Figure A-01: 피규어 1" />
+        <div class="caption">Akatsuki Figure A-01</div>
+      </div>
+      <div class="card">
+        <img class="fig-img" data-src="https://github.com/typoon725/img/blob/main/%EB%B8%94%EB%A6%AC%EC%B9%98.jpg?raw=true" src="https://github.com/typoon725/img/blob/main/%EB%B8%94%EB%A6%AC%EC%B9%98.jpg?raw=true" alt="Mecha Monster Figure A-02: 피규어 2" />
+        <div class="caption">Mecha Monster Figure A-02</div>
+      </div>
+      <div class="card">
+        <img class="fig-img" data-src="https://github.com/typoon725/img/blob/main/%EC%95%84%EC%B9%B4%EC%B8%A0%ED%82%A4.jpg?raw=true" src="https://github.com/typoon725/img/blob/main/%EC%95%84%EC%B9%B4%EC%B8%A0%ED%82%A4.jpg?raw=true" alt="Wizard Figure A-03: 피규어 3" />
+        <div class="caption">Wizard Figure A-03</div>
+      </div>
+      <div class="card">
+        <img class="fig-img" data-src="https://github.com/typoon725/img/blob/main/%EC%A7%95%ED%81%AC%EC%8A%A4.jpg?raw=true" src="https://github.com/typoon725/img/blob/main/%EC%A7%95%ED%81%AC%EC%8A%A4.jpg?raw=true" alt="Knight Figure A-04: 피규어 4" />
+        <div class="caption">Knight Figure A-04</div>
+      </div>
+      <div class="card">
+        <img class="fig-img" data-src="https://github.com/typoon725/img/blob/main/%ED%94%84%EB%A6%AC%EB%A0%8C.jpg?raw=true" src="https://github.com/typoon725/img/blob/main/%ED%94%94%EB%A6%AC%EB%A0%8C.jpg?raw=true" alt="Mage Figure A-05: 피규어 5" />
+        <div class="caption">Mage Figure A-05</div>
+      </div>
+      <div class="card">
+        <img class="fig-img" data-src="https://github.com/typoon725/img/blob/main/%ED%95%98%EC%9A%B8.jpg?raw=true" src="https://github.com/typoon725/img/blob/main/%ED%95%98%EC%9A%B8.jpg?raw=true" alt="Swordmaster Figure A-06: 피규어 6" />
+        <div class="caption">Swordmaster Figure A-06</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule" class="section" aria-label="드롭 일정">
+    <h2>드롭 일정</h2>
+    <div class="grid" aria-label="드롭 일정 카드">
+      <div class="panel" id="dropNext" style="animation-delay:.0s">
+        <strong>다음 드롭</strong>
+        <p>날짜: 2026-08-15 20:00 (KST)</p>
+        <p>남은 수량: <span id="dropsLeft">42/200</span></p>
+        <p class="muted">드롭은 추첨 시스템으로 진행됩니다.</p>
+        <button class="btn-secondary" id="viewDetails">드롭 상세</button>
+      </div>
+      <div class="panel" id="scheduleHow" style="animation-delay:.08s">
+        <strong>참여 방법</strong>
+        <p>이벤트 페이지에서 신청/추첨에 응모합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="apply" class="section" aria-label="신청/추첨">
+    <h2>신청 및 추첨</h2>
+    <div class="grid" role="region" aria-label="신청 폼">
+      <form id="entryForm" class="panel" onsubmit="return handleSubmit(event)">
+        <div>
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" required placeholder="홍길동">
+        </div>
+        <div>
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" required placeholder="name@example.com">
+        </div>
+        <div>
+          <label for="figure">관심 피규어</label>
+          <select id="figure" name="figure" required>
+            <option value="">선택하세요</option>
+            <option>A-01</option>
+            <option>A-02</option>
+            <option>A-03</option>
+            <option>A-04</option>
+          </select>
+        </div>
+        <div>
+          <label><input type="checkbox" id="agree" required> 개인정보 처리에 동의합니다.</label>
+        </div>
+        <div style="margin-top:8px;">
+          <button type="submit" id="submitBtn">신청하기</button>
+          <span class="muted" id="formStatus" style="margin-left:8px"></span>
+        </div>
+      </form>
+
+      <div class="panel" aria-label="추첨 결과 시뮬레이션">
+        <strong>추첨 확률 시뮬레이터</strong>
+        <p class="muted">현재 참가자 수 대비 확률 정보를 제공합니다.</p>
+        <div>참가자 수: <span id="participants">0</span></div>
+        <div>당첨 확률: <span id="probability">0%</span></div>
+        <button class="btn-secondary" id="simulateBtn" style="margin-top:8px">시뮬레이션 실행</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="delivery" class="section" aria-label="수령/배송 안내">
+    <h2>수령/배송 안내</h2>
+    <div class="grid">
+      <div class="panel">
+        <strong>수령 옵션</strong>
+        <p>배송: 국내 전 지역 배송 가능</p>
+        <p>오프라인 수령: 행사장 픽업 옵션 제공</p>
+      </div>
+      <div class="panel">
+        <strong>필요 정보</strong>
+        <p>수령지 정보 입력은 배송 옵션 선택 시 필요합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;">
+    <p class="muted" style="margin:0 0 8px">개인정보 처리방침 및 이용약관은 페이지 하단에서 확인하세요.</p>
+    <button id="openFAQ" class="btn-secondary">FAQ 및 정책</button>
+  </section>
+
+  <footer class="footer" aria-label="저작권 정보">
+    © 2026 Collector's Night. All rights reserved.
+  </footer>
+
+  <div class="modal" id="modal" role="dialog" aria-label="모달">
+    <div class="dialog">
+      <div id="modalContent" class="muted" style="font-size:14px;"></div>
+      <button style="margin-top:8px" onclick="closeModal()">닫기</button>
+    </div>
+  </div>
+
+  <script>
+    // 이미지 로딩: data-src를 실제 src로 교체
+    function preloadImages(){
+      document.querySelectorAll('.fig-img[data-src]').forEach(img => {
+        img.src = img.getAttribute('data-src');
+      });
+    }
+    document.addEventListener('DOMContentLoaded', preloadImages);
+
+    function openModal(content){
+      document.getElementById('modalContent').innerHTML = content;
+      document.getElementById('modal').classList.add('open');
+    }
+    function closeModal(){ document.getElementById('modal').classList.remove('open'); }
+
+    document.getElementById('viewDetails').addEventListener('click', () => {
+      openModal("<strong>드롭 상세</strong><p>한정 수량 중 일부가 추첨으로 배정됩니다. 사전 예약자 혜택이 적용됩니다.</p>");
+    });
+    document.getElementById('openFAQ').addEventListener('click', () => {
+      openModal("<strong>FAQ</strong><p>질문: 언제 당첨되나요?<br/>답: 드롭 직후 이메일로 발표합니다.</p>");
+    });
+
+    // 신청 처리
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const figure = document.getElementById('figure').value;
+      if(!name || !email || !figure) return false;
+      document.getElementById('formStatus').textContent = "✅ 신청이 접수되었습니다!";
+      const cur = parseInt(localStorage.getItem('participants') || '0') + 1;
+      localStorage.setItem('participants', String(cur));
+      document.getElementById('participants').textContent = cur;
+      updateProb();
+      e.target.reset();
+      return false;
+    }
+
+    function updateProb(){
+      const p = parseInt(localStorage.getItem('participants') || '0');
+      const total = 200;
+      const prob = Math.min(100, Math.round((p/total)*100));
+      document.getElementById('probability').textContent = prob + '%';
+      document.getElementById('dropsLeft').textContent = Math.max(0, total - p) + '/' + total;
+    }
+
+    document.getElementById('simulateBtn').addEventListener('click', ()=>{
+      const p = parseInt(document.getElementById('participants').textContent || '0');
+      document.getElementById('probability').textContent = Math.min(100, Math.round((p/200)*100)) + "% (시뮬레이션)";
+    });
+
+    window.addEventListener('load', () => {
+      const p = parseInt(localStorage.getItem('participants') || '0');
+      document.getElementById('participants').textContent = p;
+      updateProb();
+    });
+  </script>
+</body>
+</html>
